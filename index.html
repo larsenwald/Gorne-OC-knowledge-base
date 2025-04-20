@@ -21,6 +21,8 @@
         --modal-bg: rgba(248, 245, 240, 0.98);
         --shadow-color: rgba(58, 50, 56, 0.15);
         --transition-speed: 0.3s;
+        --term-color: rgb(41, 91, 255);
+        --term-color-hover: rgb(204, 0, 0);
       }
 
       /* Dark mode variables */
@@ -33,6 +35,8 @@
         --bg-color: #1f1f1f;
         --modal-bg: rgba(31, 31, 31, 0.98);
         --shadow-color: rgba(0, 0, 0, 0.5);
+        --term-color: rgb(212, 211, 104);
+        --term-color-hover: rgb(255, 255, 255);
       }
 
       * {
@@ -551,13 +555,14 @@
 
       /* Terms and Modal */
       .term {
-        text-decoration: underline dotted var(--accent-color);
+        text-decoration: underline;
+        color: var(--term-color);
         cursor: pointer;
         transition: color var(--transition-speed);
       }
 
       .term:hover {
-        color: var(--secondary-color);
+        color: var(--term-color-hover);
       }
 
       .modal {
@@ -663,58 +668,6 @@
         font-weight: 600;
         color: var(--secondary-color);
         transition: color var(--transition-speed);
-      }
-
-      /* Collapsible sections */
-      .collapsible {
-        margin-bottom: 1rem;
-      }
-
-      .collapsible-header {
-        padding: 1rem;
-        background-color: var(--light-accent);
-        color: var(--primary-color);
-        cursor: pointer;
-        border-radius: 6px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background-color var(--transition-speed),
-          color var(--transition-speed);
-      }
-
-      .collapsible-header:hover {
-        background-color: var(--accent-color);
-      }
-
-      .collapsible-icon {
-        transition: transform 0.3s ease;
-      }
-
-      .collapsible-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease;
-        padding: 0 1rem;
-        border: 1px solid var(--light-accent);
-        border-top: none;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-        transition: border-color var(--transition-speed);
-      }
-
-      .collapsible.active .collapsible-header {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      .collapsible.active .collapsible-icon {
-        transform: rotate(180deg);
-      }
-
-      .collapsible.active .collapsible-content {
-        max-height: 1000px;
-        padding: 1rem;
       }
 
       /* Blockquote */
@@ -985,8 +938,9 @@
         <blockquote>
           "Here, have this. It's not sour, it's good, just like me!"
           <cite
-            >— Five-year-old Gorne, offering an apple to a visiting knight who
-            regarded him with suspicious prejudice</cite
+            >— Five-year-old Gorne, offering an apple to a visiting knight who,
+            like most, didn’t initially trust the sight of a half-orc
+            child</cite
           >
         </blockquote>
 
@@ -1003,17 +957,27 @@
         <p>
           Gorne was hopelessly in love with Penelope, and life seemed perfect...
           until tragedy struck. Just months after they married, Penelope was
-          attacked and killed by
+          killed during a raid by
           <span class="term" data-term="cragmaw-goblins">Cragmaw goblins</span>
-          near Neverwinter Wood.
+          while delivering diplomatic messages to a nearby village.
         </p>
 
         <p>
-          Gorne, filled with grief and rage, turned away from Tyr and embraced
-          <span class="term" data-term="hoar">Hoar</span>, the god of vengeance.
-          Succumbing to the Blood of Gruumsh and harnessing cruel divine
-          energies from Hoar, he wiped out much of the Cragmaw tribe, not even
-          sparing defenseless elders and infants.
+          Upon hearing of the attack, Gorne immediately remembered Penelope's
+          mission to deliver messages to that very village. His heart pounding
+          with dread, he rode desperately on horseback, silently pleading for
+          her safety. Arriving at the village, he was met by a nightmarish
+          scene: buildings ablaze, the ground littered with victims of the
+          Cragmaw goblins' brutal raid. Amidst the smoke and ruin, Gorne
+          discovered Penelope's lifeless body, her diplomatic messages scattered
+          beside her. Grief consumed him entirely, twisting swiftly into rage.
+          Rejecting Tyr's call for justice, Gorne embraced
+          <span class="term" data-term="hoar">Hoar's</span> promise of
+          vengeance, allowing the Blood of Gruumsh to surge unchecked through
+          his veins. Now, with his divine powers empowered by Hoar's ruthless
+          divine fury instead of Tyr's measured justice, he tracked and wiped
+          out much of the Cragmaw tribe, not even sparing defenseless elders and
+          infants.
         </p>
 
         <p>
@@ -1027,13 +991,12 @@
 
         <p>
           Unable to cope with his guilt and shame, Gorne found himself cut off
-          from most of his divine powers. His overwhelming shame and
-          self-loathing created a sort of mental block between himself and the
-          divine. Although his family unconditionally loves and forgives him,
-          and even with Tyr himself willing to restore the guilt-ridden paladin,
-          Gorne's own conviction that he is unworthy became a self-fulfilling
-          prophecy, weakening his divine connection greatly and sapping his
-          divine powers.
+          from most of his divine powers. His overwhelming self-loathing created
+          a sort of mental block between himself and the divine. Although his
+          family unconditionally loves and forgives him, and even with Tyr
+          himself willing to restore the guilt-ridden paladin, Gorne's own
+          conviction that he is unworthy became a self-fulfilling prophecy,
+          weakening his divine connection greatly.
         </p>
 
         <p>
@@ -1281,7 +1244,6 @@
           unusual birthplace to the sites of his greatest triumphs and failures.
         </p>
 
-        <!-- Changed to collapsible sections instead of cards with modals -->
         <div class="location-collapsibles">
           <div class="collapsible">
             <div class="collapsible-header">
