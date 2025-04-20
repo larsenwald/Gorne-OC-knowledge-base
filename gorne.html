@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gorne Kevlor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Cinzel:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #3a3238;
+        --secondary-color: #8b5d33;
+        --accent-color: #b38a58;
+        --light-accent: #e6d2b5;
+        --text-color: #2a2a2a;
+        --bg-color: #f8f5f0;
+        --modal-bg: rgba(248, 245, 240, 0.98);
+        --shadow-color: rgba(58, 50, 56, 0.15);
+        --transition-speed: 0.3s;
+      }
+
+      /* Dark mode variables */
+      .dark-mode {
+        --primary-color: #b69373;
+        --secondary-color: #b38a58;
+        --accent-color: #e6d2b5;
+        --light-accent: #8c785f;
+        --text-color: #e6d2b5;
+        --bg-color: #1f1f1f;
+        --modal-bg: rgba(31, 31, 31, 0.98);
+        --shadow-color: rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Alegreya", serif;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        transition: background-color var(--transition-speed),
+          color var(--transition-speed);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+        transition: color var(--transition-speed);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        text-align: justify;
+      }
+
+      a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color var(--transition-speed);
+      }
+
+      a:hover {
+        color: var(--accent-color);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      /* Header */
+      header {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--light-accent);
+        transition: border-color var(--transition-speed);
+      }
+
+      .header-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .site-title {
+        font-size: 1.8rem;
+        margin: 0;
+      }
+
+      .switch {
+        font-size: 12px; /* Reduced from 17px */
+        position: relative;
+        display: inline-block;
+        width: 4em;
+        height: 2.2em;
+        border-radius: 1.5em; /* Changed to em units */
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+        margin: 0 1rem 0.5rem;
+      }
+
+      /* Hide default HTML checkbox */
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #2a2a2a;
+        transition: 0.4s;
+        border-radius: 1.5em; /* Changed to em units */
+        overflow: hidden;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.2em;
+        width: 1.2em;
+        border-radius: 1em; /* Changed to em units */
+        left: 0.5em;
+        bottom: 0.5em;
+        transition: 0.4s;
+        transition-timing-function: cubic-bezier(0.81, -0.04, 0.38, 1.5);
+        box-shadow: inset 6px -3px 0px 0px #fff; /* Scaled down from 8px -4px */
+      }
+
+      .switch input:checked + .slider {
+        background-color: #00a6ff;
+      }
+
+      .switch input:checked + .slider:before {
+        transform: translateX(1.8em);
+        box-shadow: inset 11px -3px 0px 11px #ffcf48; /* Scaled down */
+      }
+
+      .star {
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        width: 0.3em; /* Changed to em units */
+        transition: all 0.4s;
+        height: 0.3em; /* Changed to em units */
+      }
+
+      .star_1 {
+        left: 2.5em;
+        top: 0.5em;
+      }
+
+      .star_2 {
+        left: 2.2em;
+        top: 1.2em;
+      }
+
+      .star_3 {
+        left: 3em;
+        top: 0.9em;
+      }
+
+      .switch input:checked ~ .slider .star {
+        opacity: 0;
+      }
+
+      .cloud {
+        width: 3.5em;
+        position: absolute;
+        bottom: -1.4em;
+        left: -1.1em;
+        opacity: 0;
+        transition: all 0.4s;
+      }
+
+      .switch input:checked ~ .slider .cloud {
+        opacity: 1;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        list-style: none;
+        margin: 2rem 0;
+        padding: 0;
+        border-bottom: 1px solid var(--light-accent);
+        overflow-x: auto;
+        scrollbar-width: none;
+        transition: border-color var(--transition-speed);
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-item {
+        padding: 0.8rem 1.5rem;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all var(--transition-speed);
+        position: relative;
+        font-family: "Playfair Display", serif;
+      }
+
+      .tab-item.active {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .tab-item.active::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--accent-color);
+        transition: background-color var(--transition-speed);
+      }
+
+      .tab-item:hover:not(.active) {
+        color: var(--secondary-color);
+      }
+
+      /* Tab Content */
+      .tab-content {
+        display: none;
+        padding: 1.5rem 0;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Character Card */
+      .character-card {
+        background-color: var(--bg-color);
+        border: 1px solid var(--light-accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px var(--shadow-color);
+        display: flex;
+        flex-direction: column;
+        transition: background-color var(--transition-speed),
+          border-color var(--transition-speed),
+          box-shadow var(--transition-speed);
+      }
+
+      @media (min-width: 768px) {
+        .character-card {
+          flex-direction: row;
+          align-items: flex-start;
+        }
+      }
+
+      .character-image {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 6px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 8px var(--shadow-color);
+        transition: box-shadow var(--transition-speed);
+      }
+
+      @media (min-width: 768px) {
+        .character-image {
+          width: 250px;
+          margin-right: 1.5rem;
+          margin-bottom: 0;
+        }
+      }
+
+      .character-info {
+        flex: 1;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .info-item {
+        margin-bottom: 0.5rem;
+      }
+
+      .info-label {
+        font-weight: 600;
+        color: var(--secondary-color);
+        transition: color var(--transition-speed);
+      }
+
+      /* Responsive Images */
+      .responsive-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px var(--shadow-color);
+        transition: box-shadow var(--transition-speed);
+      }
+
+      /* Location Grid */
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .location-card {
+        border: 1px solid var(--light-accent);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px var(--shadow-color);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed),
+          border-color var(--transition-speed);
+        cursor: pointer;
+      }
+
+      .location-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 16px var(--shadow-color);
+      }
+
+      .location-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .location-details {
+        padding: 1rem;
+        background-color: var(--bg-color);
+        transition: background-color var(--transition-speed);
+      }
+
+      .location-name {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .location-description {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.9;
+        transition: color var(--transition-speed);
+      }
+
+      /* Relationships */
+      .relationship-card {
+        border: 1px solid var(--light-accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px var(--shadow-color);
+        transition: box-shadow var(--transition-speed),
+          border-color var(--transition-speed);
+      }
+
+      .relationship-card h3 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .relationship-type {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        margin-left: 1rem;
+        background-color: var(--light-accent);
+        color: var(--primary-color);
+        transition: background-color var(--transition-speed),
+          color var(--transition-speed);
+      }
+
+      .relationship-type.family {
+        background-color: #d4e6f1;
+        color: #2874a6;
+      }
+
+      .relationship-type.ally {
+        background-color: #d5f5e3;
+        color: #1e8449;
+      }
+
+      .relationship-type.enemy {
+        background-color: #f2d7d5;
+        color: #922b21;
+      }
+
+      .relationship-type.mentor {
+        background-color: #fef9e7;
+        color: #b7950b;
+      }
+
+      .relationship-image {
+        float: left;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 1rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 4px 8px var(--shadow-color);
+        transition: box-shadow var(--transition-speed);
+      }
+
+      /* Factions */
+      .faction-card {
+        border: 1px solid var(--light-accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px var(--shadow-color);
+        transition: box-shadow var(--transition-speed),
+          border-color var(--transition-speed);
+      }
+
+      .faction-card h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      .faction-image {
+        float: left;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 1rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 4px 8px var(--shadow-color);
+        transition: box-shadow var(--transition-speed);
+      }
+
+      /* Deities */
+      .deity-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .deity-card {
+        border: 1px solid var(--light-accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px var(--shadow-color);
+        transition: box-shadow var(--transition-speed),
+          border-color var(--transition-speed);
+      }
+
+      .deity-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .deity-icon {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 25px;
+        margin-right: 1rem;
+        box-shadow: 0 2px 4px var(--shadow-color);
+        transition: box-shadow var(--transition-speed);
+      }
+
+      .deity-name {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+
+      .deity-portfolio {
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+        font-style: italic;
+        transition: color var(--transition-speed);
+      }
+
+      .connection-meter {
+        height: 6px;
+        background-color: var(--light-accent);
+        border-radius: 3px;
+        margin: 1rem 0;
+        position: relative;
+        overflow: hidden;
+        transition: background-color var(--transition-speed);
+      }
+
+      .connection-value {
+        height: 100%;
+        background-color: var(--secondary-color);
+        border-radius: 3px;
+        transition: width 1s ease-out, background-color var(--transition-speed);
+      }
+
+      /* Terms and Modal */
+      .term {
+        text-decoration: underline dotted var(--accent-color);
+        cursor: pointer;
+        transition: color var(--transition-speed);
+      }
+
+      .term:hover {
+        color: var(--secondary-color);
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .modal-content {
+        background-color: var(--modal-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        transition: background-color var(--transition-speed);
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        transition: color var(--transition-speed);
+      }
+
+      .close-modal:hover {
+        color: var(--secondary-color);
+      }
+
+      .modal-title {
+        margin-top: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--accent-color);
+        transition: border-color var(--transition-speed);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 3rem;
+        padding: 2rem 0;
+        border-top: 1px solid var(--light-accent);
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.8;
+        transition: border-color var(--transition-speed),
+          color var(--transition-speed);
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        margin: 2rem 0;
+        padding: 1rem 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 2px;
+        background-color: var(--light-accent);
+        transition: background-color var(--transition-speed);
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -6px;
+        top: 0;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+        transition: background-color var(--transition-speed);
+      }
+
+      .timeline-date {
+        font-weight: 600;
+        color: var(--secondary-color);
+        transition: color var(--transition-speed);
+      }
+
+      /* Collapsible sections */
+      .collapsible {
+        margin-bottom: 1rem;
+      }
+
+      .collapsible-header {
+        padding: 1rem;
+        background-color: var(--light-accent);
+        color: var(--primary-color);
+        cursor: pointer;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color var(--transition-speed),
+          color var(--transition-speed);
+      }
+
+      .collapsible-header:hover {
+        background-color: var(--accent-color);
+      }
+
+      .collapsible-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .collapsible-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        padding: 0 1rem;
+        border: 1px solid var(--light-accent);
+        border-top: none;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        transition: border-color var(--transition-speed);
+      }
+
+      .collapsible.active .collapsible-header {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .collapsible.active .collapsible-icon {
+        transform: rotate(180deg);
+      }
+
+      .collapsible.active .collapsible-content {
+        max-height: 1000px;
+        padding: 1rem;
+      }
+
+      /* Blockquote */
+      blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        transition: border-color var(--transition-speed);
+      }
+
+      cite {
+        display: block;
+        text-align: right;
+        font-style: normal;
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+        color: var(--secondary-color);
+        transition: color var(--transition-speed);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .tabs {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+        }
+
+        .tab-item {
+          padding: 0.8rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        h3 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container container">
+        <h1 class="site-title">Gorne Kevlor</h1>
+        <label class="switch">
+          <input checked="true" id="checkbox" type="checkbox" />
+          <span class="slider">
+            <div class="star star_1"></div>
+            <div class="star star_2"></div>
+            <div class="star star_3"></div>
+            <svg viewBox="0 0 16 16" class="cloud_1 cloud">
+              <path
+                transform="matrix(.77976 0 0 .78395-299.99-418.63)"
+                fill="#fff"
+                d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
+              ></path>
+            </svg>
+          </span>
+        </label>
+      </div>
+    </header>
+
+    <main class="container">
+      <ul class="tabs">
+        <li class="tab-item active" data-tab="general">General</li>
+        <li class="tab-item" data-tab="relationships">Relationships</li>
+        <li class="tab-item" data-tab="locations">Locations</li>
+        <li class="tab-item" data-tab="factions">Factions</li>
+        <li class="tab-item" data-tab="faith">Faith & Powers</li>
+      </ul>
+
+      <!-- General Tab -->
+      <div id="general" class="tab-content active">
+        <div class="character-card">
+          <img
+            src="images/gorne-general.png"
+            alt="Gorne Kevlor"
+            class="character-image"
+          />
+          <div class="character-info">
+            <h2>Gorne Kevlor</h2>
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-label">Race:</div>
+                <div>Half-Orc</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Class:</div>
+                <div>Paladin</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Born:</div>
+                <div>1469 DR</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Homeland:</div>
+                <div>Fort Defiance/Moonhunter Valley</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Status:</div>
+                <div>Seeking redemption</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Biography</h2>
+        <p>
+          Gorne Kevlor was born in 1469 DR, the son of an unusual couple: Sir
+          Aldren Kevlor, a human paladin from the
+          <span class="term" data-term="order-of-the-gauntlet"
+            >Order of the Gauntlet</span
+          >, and Varka, chieftain of the orcish
+          <span class="term" data-term="moonhunters">Moonhunters tribe</span>.
+          They met when Aldren was leading a mission to secure the High Road
+          near Neverwinter and found a surprising ally in Varka. Over time, they
+          fell in love and got married. It wasn't easy though. Higher ups in
+          Neverwinter who were invested in Fort Defiance's progress saw the
+          trust in orcs as naive and dangerous, and even Aldren's own order
+          initially opposed their union.
+        </p>
+
+        <p>
+          Growing up, Gorne spent time both at
+          <span class="term" data-term="fort-defiance">Fort Defiance</span> and
+          in
+          <span class="term" data-term="moonhunter-valley"
+            >Moonhunter Valley</span
+          >. His father taught him swordsmanship and how to wear armor like a
+          second skin, while his mother showed him how to hunt and to control
+          the
+          <span class="term" data-term="blood-of-gruumsh"
+            >"Blood of Gruumsh,"</span
+          >
+          the powerful but very dangerous rage that exists within all orcs. She
+          often reminded him that the one thing that distinguished Moonhunters
+          from the savage orc was their ability to control this rage and not
+          give in to it.
+        </p>
+
+        <p>
+          When Gorne was younger, a large gray wolf named Stormfang started
+          appearing at important moments in his life, like during dangerous
+          fights or lonely travels. It would vanish afterward, sometimes for
+          months or even longer. The Moonhunter shamans said this was a sign of
+          favor from
+          <span class="term" data-term="silvanus">Silvanus</span>, the god of
+          nature.
+        </p>
+
+        <p>
+          Despite facing prejudice due to his mixed heritage, Gorne's
+          charismatic personality and ability to put anyone he spoke to at ease
+          won over anyone who interacted with him. He was often described by
+          people as having a charming and carefree personality, yet strict in
+          his determination to uphold justice.
+        </p>
+
+        <blockquote>
+          "Here, have this. It's not sour, it's good, just like me!"
+          <cite
+            >— Five-year-old Gorne, offering an apple to a visiting knight who
+            regarded him with suspicious prejudice</cite
+          >
+        </blockquote>
+
+        <p>
+          He dedicated himself to following the paladin's path; at age fifteen,
+          he officially pledged himself to
+          <span class="term" data-term="tyr">Tyr</span> and became one of the
+          few half-orc paladins along the Sword Coast. When he turned eighteen,
+          he married Penelope, a half-elf diplomat working under Lord Neverember
+          (secretly connected with the
+          <span class="term" data-term="harpers">Harpers</span>).
+        </p>
+
+        <p>
+          Gorne was hopelessly in love with Penelope, and life seemed perfect...
+          until tragedy struck. Just months after they married, Penelope was
+          attacked and killed by
+          <span class="term" data-term="cragmaw-goblins">Cragmaw goblins</span>
+          near Neverwinter Wood.
+        </p>
+
+        <p>
+          Gorne, filled with grief and rage, turned away from Tyr and embraced
+          <span class="term" data-term="hoar">Hoar</span>, the god of vengeance.
+          Succumbing to the Blood of Gruumsh and harnessing cruel divine
+          energies from Hoar, he wiped out much of the Cragmaw tribe, not even
+          sparing defenseless elders and infants.
+        </p>
+
+        <p>
+          His parents tried to stop him and help their son still his rage, but
+          during the conflict, Gorne seriously wounded his father Aldren,
+          permanently injuring his hand in a sad, ironic parallel of Tyr's own
+          sacrifice. Only when Gorne learned that Penelope had been revived by a
+          powerful cleric did his fury finally subside. And the realization of
+          what he'd done crushed him.
+        </p>
+
+        <p>
+          Unable to cope with his guilt and shame, Gorne found himself cut off
+          from most of his divine powers. His overwhelming shame and
+          self-loathing created a sort of mental block between himself and the
+          divine. Although his family unconditionally loves and forgives him,
+          and even with Tyr himself willing to restore the guilt-ridden paladin,
+          Gorne's own conviction that he is unworthy became a self-fulfilling
+          prophecy, weakening his divine connection greatly and sapping his
+          divine powers.
+        </p>
+
+        <p>
+          So, he left Fort Defiance and Moonhunter Valley to travel Faerûn as a
+          true paladin, dedicated to the pursuit of helping others. In a world
+          where thousands of innocents are plagued by malevolent threats, he
+          hopes that if he helps enough people, restores enough order, rights
+          enough wrongs, he will be able to rid himself of the crippling guilt
+          he feels for succumbing to the Blood of Gruumsh and hurting those he
+          loved most.
+        </p>
+
+        <h2>Timeline</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">1469 DR</div>
+            <div class="timeline-content">
+              <p>
+                Born to Sir Aldren Kevlor and Varka of the Moonhunters in Fort
+                Defiance.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1474 DR</div>
+            <div class="timeline-content">
+              <p>
+                First encounter with Stormfang, the gray wolf believed to be a
+                messenger of Silvanus.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1484 DR</div>
+            <div class="timeline-content">
+              <p>Began formal paladin training under his father's tutelage.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1485 DR</div>
+            <div class="timeline-content">
+              <p>
+                Pledged himself to Tyr, becoming one of the few half-orc
+                paladins on the Sword Coast.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1487 DR</div>
+            <div class="timeline-content">
+              <p>
+                Married Penelope, a half-elven diplomat in service to Lord
+                Neverember.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1488 DR</div>
+            <div class="timeline-content">
+              <p>
+                Penelope slain by Cragmaw goblins; Gorne turned to Hoar for
+                vengeance and massacred the tribe.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1488 DR</div>
+            <div class="timeline-content">
+              <p>
+                Discovered Penelope had been revived; reckoning with his actions
+                and separation from Tyr's grace.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">1489 DR</div>
+            <div class="timeline-content">
+              <p>
+                Left Fort Defiance to begin his journey of redemption across
+                Faerûn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relationships Tab -->
+      <div id="relationships" class="tab-content">
+        <h2>Relationships</h2>
+        <p>
+          Throughout his life, Gorne has formed numerous significant bonds that
+          have shaped who he is. From his unusual parentage to his tragic
+          marriage, these relationships define much of his character and
+          motivations.
+        </p>
+
+        <div class="relationship-card">
+          <img
+            src="images/aldren.png"
+            alt="Sir Aldren Kevlor"
+            class="relationship-image"
+          />
+          <h3>
+            Sir Aldren Kevlor
+            <span class="relationship-type family">Father</span>
+          </h3>
+          <p>
+            A human paladin of Tyr and knight of the Order of the Gauntlet.
+            Aldren was assigned to rebuild and command Fort Defiance, securing
+            the High Road trade route near Neverwinter. His unusual alliance
+            with the Moonhunters tribe led to his marriage with Varka and
+            eventually the birth of Gorne.
+          </p>
+          <p>
+            Aldren taught Gorne swordsmanship, combat discipline, and the
+            principles of justice that eventually led him to become a paladin of
+            Tyr. Their relationship was severely damaged when Gorne, consumed by
+            vengeance, injured his father's hand during his rampage against the
+            Cragmaw goblins - a wound that mirrors Tyr's own sacrifice.
+          </p>
+          <blockquote>
+            "A true paladin judges by action, not birth. Remember that, my son,
+            when others judge you by your tusks rather than your heart."
+            <cite>— Sir Aldren Kevlor</cite>
+          </blockquote>
+        </div>
+
+        <div class="relationship-card">
+          <img src="images/varka.png" alt="Varka" class="relationship-image" />
+          <h3>Varka <span class="relationship-type family">Mother</span></h3>
+          <p>
+            Chieftain of the Moonhunters tribe, an unusual orcish community that
+            rejected the violent ways of Gruumsh in favor of the more balanced
+            teachings of Silvanus and Selûne. Varka is a skilled warrior and
+            wise leader who guided her people away from their savage origins.
+          </p>
+          <p>
+            She taught Gorne to control the "Blood of Gruumsh" - the dangerous
+            rage inherent to orcish blood - and to embrace both sides of his
+            heritage. Her lessons about restraint and balance made a profound
+            impact on him, making his fall to vengeance all the more
+            devastating.
+          </p>
+          <blockquote>
+            "The Blood calls to all of us, Gorne; it always has. But it is up to
+            us to stifle it and choose not to answer."
+            <cite>— Varka of the Moonhunters</cite>
+          </blockquote>
+        </div>
+
+        <div class="relationship-card">
+          <img
+            src="images/penelope.png"
+            alt="Penelope"
+            class="relationship-image"
+          />
+          <h3>Penelope <span class="relationship-type family">Wife</span></h3>
+          <p>
+            A half-elven diplomat who worked under Lord Neverember in
+            Neverwinter, Penelope was secretly an agent of the Harpers,
+            gathering intelligence to ensure the city's rebuilding served the
+            common good. She met Gorne during a diplomatic mission to Fort
+            Defiance and was immediately struck by his unique perspective as a
+            half-orc raised between two cultures.
+          </p>
+          <p>
+            Their marriage was brief but deeply loving. Her death at the hands
+            of Cragmaw goblins triggered Gorne's fall from grace, though her
+            miraculous revival by a powerful cleric ultimately stopped his
+            rampage. Their relationship now is complicated by Gorne's shame over
+            his actions and his self-imposed exile to seek redemption.
+          </p>
+          <blockquote>
+            "Careful, Gorne. Smile at me like that again and I might forget
+            we're in public."
+            <cite>— Penelope</cite>
+          </blockquote>
+        </div>
+
+        <div class="relationship-card">
+          <img
+            src="images/stormfang.png"
+            alt="Stormfang"
+            class="relationship-image"
+          />
+          <h3>
+            Stormfang <span class="relationship-type ally">Spirit Guide</span>
+          </h3>
+          <p>
+            A large gray wolf that mysteriously appears at significant moments
+            in Gorne's life. According to Moonhunter shamans, Stormfang is a
+            messenger of Silvanus, the Forest Father, marking Gorne as one who
+            walks between worlds.
+          </p>
+          <p>
+            The wolf typically appears during moments of danger or important
+            decisions, and vanishes just as mysteriously. Since Gorne's fall and
+            separation from Tyr's grace, Stormfang has not been seen, though
+            Gorne sometimes dreams of the wolf leading him through dark forests
+            toward a distant light.
+          </p>
+        </div>
+
+        <div class="relationship-card">
+          <img
+            src="images/grol.png"
+            alt="King Grol"
+            class="relationship-image"
+          />
+          <h3>King Grol <span class="relationship-type enemy">Enemy</span></h3>
+          <p>
+            The bugbear leader of the Cragmaw goblin tribe that attacked and
+            killed Penelope. Though Gorne slaughtered most of the tribe in his
+            vengeful rampage, some survivors have scattered throughout the
+            Neverwinter Wood, telling fearful tales of the "Tusked Demon" who
+            brought destruction to their people.
+          </p>
+          <p>
+            King Grol himself managed to escape, and his defeat marked the peak
+            of Gorne's vengeful fury. The memory of what followed - the
+            slaughter of noncombatants, even children - is what haunts Gorne
+            most in his quieter moments.
+          </p>
+        </div>
+      </div>
+
+      <!-- Locations Tab -->
+      <div id="locations" class="tab-content">
+        <h2>Significant Locations</h2>
+        <p>
+          Several places have played important roles in Gorne's life, from his
+          unusual birthplace to the sites of his greatest triumphs and failures.
+        </p>
+
+        <div class="location-grid">
+          <div class="location-card" data-location="fort-defiance">
+            <img
+              src="/api/placeholder/300/180"
+              alt="Fort Defiance"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">Fort Defiance</h3>
+              <p class="location-description">
+                A rebuilt garrison along the High Road, jointly operated by the
+                Order of the Gauntlet and the Moonhunters tribe.
+              </p>
+            </div>
+          </div>
+
+          <div class="location-card" data-location="moonhunter-valley">
+            <img
+              src="/api/placeholder/300/180"
+              alt="Moonhunter Valley"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">Moonhunter Valley</h3>
+              <p class="location-description">
+                Hidden valley in Neverwinter Wood, home to the Moonhunter orc
+                tribe that follows Silvanus and Selûne.
+              </p>
+            </div>
+          </div>
+
+          <div class="location-card" data-location="neverwinter">
+            <img
+              src="/api/placeholder/300/180"
+              alt="Neverwinter"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">Neverwinter</h3>
+              <p class="location-description">
+                The City of Skilled Hands, being rebuilt under Lord Neverember
+                after the cataclysm of Mount Hotenow.
+              </p>
+            </div>
+          </div>
+
+          <div class="location-card" data-location="neverwinter-wood">
+            <img
+              src="/api/placeholder/300/180"
+              alt="Neverwinter Wood"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">Neverwinter Wood</h3>
+              <p class="location-description">
+                Ancient forest east of Neverwinter, home to various creatures
+                including the Cragmaw goblin tribe.
+              </p>
+            </div>
+          </div>
+
+          <div class="location-card" data-location="high-road">
+            <img
+              src="/api/placeholder/300/180"
+              alt="The High Road"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">The High Road</h3>
+              <p class="location-description">
+                Major trade route along the Sword Coast, vital to Neverwinter's
+                rebuilding efforts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Factions Tab -->
+      <div id="factions" class="tab-content">
+        <h2>Factions</h2>
+        <p>
+          Various organizations have influenced Gorne's life and continue to
+          shape his journey. Some gave him purpose, others taught him valuable
+          lessons, and some became bitter enemies.
+        </p>
+
+        <div class="faction-card">
+          <img
+            src="images/order-of-the-gauntlet.png"
+            alt="Order of the Gauntlet"
+            class="faction-image"
+          />
+          <h3>Order of the Gauntlet</h3>
+          <p>
+            A coalition of righteous warriors, paladins and clerics who
+            dedicated themselves to protecting the innocent and fighting evil
+            across Faerûn. Founded in the 15th century DR, the Order emphasized
+            proactive vigilance against threats while maintaining a strong moral
+            code.
+          </p>
+          <p>
+            Sir Aldren Kevlor was a Knight-Lieutenant in the Order, assigned to
+            secure the High Road near Neverwinter by rebuilding and commanding
+            Fort Defiance. The Order initially opposed his alliance with the
+            Moonhunters tribe but eventually accepted it as a practical measure
+            to secure the region.
+          </p>
+          <p>
+            While Gorne was never formally inducted into the Order, he was
+            raised with its principles and many members served as mentors during
+            his youth. After his fall from grace, his relationship with the
+            Order became strained, with some members viewing him as a cautionary
+            tale about the dangers of unchecked emotion.
+          </p>
+        </div>
+
+        <div class="faction-card">
+          <img
+            src="images/moonhunters.png"
+            alt="Moonhunters Tribe"
+            class="faction-image"
+          />
+          <h3>Moonhunters Tribe</h3>
+          <p>
+            An unusual tribe of orcs who rejected the violent teachings of
+            Gruumsh in favor of the more balanced path of Silvanus and Selûne.
+            Founded generations ago by a visionary chieftain named Grohk
+            Steelclaw who renounced the orcish pantheon after witnessing how its
+            endless calls for violence threatened to destroy his people.
+          </p>
+          <p>
+            Led by Varka, Gorne's mother, the Moonhunters established a
+            settlement in a hidden valley near Fort Defiance. Their alliance
+            with Sir Aldren's forces proved mutually beneficial, with the orcs
+            providing superior knowledge of the local wilderness while gaining
+            protection from more traditional orc tribes that viewed them as
+            heretics.
+          </p>
+          <p>
+            The Moonhunters place great emphasis on controlling what they call
+            the "Blood of Gruumsh" - the rage inherent to orcish nature. Their
+            shamans teach meditation techniques and rituals to master this
+            dangerous fury, making Gorne's eventual fall to vengeful rage all
+            the more tragic in their eyes.
+          </p>
+        </div>
+
+        <div class="faction-card">
+          <img
+            src="images/harpers.png"
+            alt="The Harpers"
+            class="faction-image"
+          />
+          <h3>The Harpers</h3>
+          <p>
+            A semi-secret organization dedicated to preserving knowledge,
+            maintaining balance, and opposing tyranny across Faerûn. Operating
+            through a loose network of individual agents rather than a rigid
+            hierarchy, the Harpers gather information and work subtly to promote
+            fairness and freedom.
+          </p>
+          <p>
+            Penelope, Gorne's wife, was secretly a Harper agent assigned to
+            monitor the rebuilding of Neverwinter under Lord Neverember. Her
+            diplomatic position provided excellent cover for her true mission:
+            ensuring the city's restoration served all its people, not just the
+            wealthy and powerful.
+          </p>
+          <p>
+            While Gorne was never directly involved with the Harpers, he learned
+            much about their ideals from Penelope. After her death and revival,
+            some Harper agents have kept a watchful eye on him, concerned about
+            his potential for both great good and terrible destruction.
+          </p>
+        </div>
+
+        <div class="faction-card">
+          <img
+            src="images/cragmaw.png"
+            alt="Cragmaw Tribe"
+            class="faction-image"
+          />
+          <h3>Cragmaw Tribe</h3>
+          <p>
+            A tribe of goblins, hobgoblins and bugbears operating in Neverwinter
+            Wood during the late 15th century DR. Named for their practice of
+            sharpening their teeth to appear more ferocious, the Cragmaw were
+            led by King Grol from their stronghold in Cragmaw Castle.
+          </p>
+          <p>
+            The Cragmaws became Gorne's bitter enemies after they attacked and
+            killed his wife Penelope during an ambush on the forest paths near
+            Neverwinter. This event triggered his embrace of Hoar, god of
+            vengeance, and his subsequent rampage that nearly destroyed the
+            entire tribe.
+          </p>
+          <p>
+            While most of the Cragmaws were killed during Gorne's vengeful
+            assault, some survivors escaped into the deeper parts of Neverwinter
+            Wood. These remnants tell fearful stories of the "Tusked Demon"
+            whose fury was unlike anything they had ever witnessed.
+          </p>
+        </div>
+
+        <div class="faction-card">
+          <img
+            src="images/lords-alliance.png"
+            alt="Lord's Alliance"
+            class="faction-image"
+          />
+          <h3>Lord's Alliance</h3>
+          <p>
+            A coalition of political powers throughout the North, dedicated to
+            mutual security and prosperity. Member cities include Waterdeep,
+            Neverwinter, Baldur's Gate, and Silverymoon, among others, each
+            maintaining a degree of independence while cooperating on matters of
+            common interest.
+          </p>
+          <p>
+            Lord Dagult Neverember, who led the reconstruction of Neverwinter
+            after the eruption of Mount Hotenow, represented the city in the
+            Alliance. His diplomatic corps, including Penelope, worked to secure
+            trade agreements and military aid to support Neverwinter's
+            rebuilding efforts.
+          </p>
+          <p>
+            Gorne's connection to the Alliance was primarily through Penelope
+            and the cooperation between Neverwinter and Fort Defiance. The
+            Alliance's officials have mixed opinions about him - some see his
+            unique heritage as potentially valuable for diplomacy between human
+            and orc communities, while others view his fall from grace as
+            evidence that orcs cannot truly overcome their savage nature.
+          </p>
+        </div>
+      </div>
+
+      <!-- Faith & Powers Tab -->
+      <div id="faith" class="tab-content">
+        <h2>Faith & Divine Connections</h2>
+        <p>
+          Gorne's life has been deeply influenced by various deities, from his
+          dedication to Tyr's justice to his temporary embrace of Hoar's
+          vengeance. His mixed heritage also connects him to both human and
+          orcish religious traditions.
+        </p>
+
+        <div class="deity-grid">
+          <div class="deity-card">
+            <div class="deity-header">
+              <img src="/api/placeholder/50/50" alt="Tyr" class="deity-icon" />
+              <div>
+                <h3 class="deity-name">Tyr</h3>
+                <div class="deity-portfolio">God of Justice</div>
+              </div>
+            </div>
+            <div class="connection-meter">
+              <div class="connection-value" style="width: 50%"></div>
+            </div>
+            <p>
+              The Maimed God, Tyr is the lawful good deity of justice in the
+              Forgotten Realms. He lost his right hand to Kezef the Chaos Hound
+              and was blinded by Ao during the Time of Troubles. His followers
+              seek balanced justice and fairness for all.
+            </p>
+            <p>
+              Gorne dedicated himself to Tyr at age fifteen, becoming one of the
+              few half-orc paladins in the Realms. His connection to the god was
+              severed when he embraced vengeance against the Cragmaw tribe.
+              Though Tyr would welcome him back, Gorne's own shame blocks his
+              reconnection to the deity's grace.
+            </p>
+          </div>
+
+          <div class="deity-card">
+            <div class="deity-header">
+              <img src="/api/placeholder/50/50" alt="Hoar" class="deity-icon" />
+              <div>
+                <h3 class="deity-name">Hoar</h3>
+                <div class="deity-portfolio">God of Vengeance</div>
+              </div>
+            </div>
+            <div class="connection-meter">
+              <div class="connection-value" style="width: 10%"></div>
+            </div>
+            <p>
+              The Doombringer, Hoar is the deity of retribution invoked by those
+              seeking to repay an eye for an eye. Unlike Tyr's balanced approach
+              to justice, Hoar embodies bitter revenge and poetic punishment for
+              wrongdoers.
+            </p>
+            <p>
+              After Penelope's death, Gorne temporarily embraced Hoar's vengeful
+              aspects, allowing the god's influence to fuel his rage against the
+              Cragmaw tribe. The cruelty he exhibited during this rampage still
+              haunts him, and he has since rejected this connection entirely.
+            </p>
+          </div>
+
+          <div class="deity-card">
+            <div class="deity-header">
+              <img
+                src="/api/placeholder/50/50"
+                alt="Silvanus"
+                class="deity-icon"
+              />
+              <div>
+                <h3 class="deity-name">Silvanus</h3>
+                <div class="deity-portfolio">God of Wild Nature</div>
+              </div>
+            </div>
+            <div class="connection-meter">
+              <div class="connection-value" style="width: 70%"></div>
+            </div>
+            <p>
+              The Oak Father, Silvanus is one of the oldest deities in Faerûn,
+              representing wild nature and the balance of natural forces. His
+              philosophy emphasizes that wilderness is the true state of the
+              world, to be preserved and respected.
+            </p>
+            <p>
+              Through his mother's tribe, Gorne learned reverence for Silvanus.
+              The mysterious wolf Stormfang is believed to be a messenger of the
+              Oak Father, marking Gorne for an important role in maintaining
+              balance. This connection remains strong despite his fall from
+              Tyr's grace.
+            </p>
+          </div>
+
+          <div class="deity-card">
+            <div class="deity-header">
+              <img
+                src="/api/placeholder/50/50"
+                alt="Selûne"
+                class="deity-icon"
+              />
+              <div>
+                <h3 class="deity-name">Selûne</h3>
+                <div class="deity-portfolio">Goddess of the Moon</div>
+              </div>
+            </div>
+            <div class="connection-meter">
+              <div class="connection-value" style="width: 60%"></div>
+            </div>
+            <p>
+              The Moonmaiden, Selûne is the goddess of the moon, stars,
+              navigation, and travelers. She embodies light in darkness and
+              guidance through difficult passages.
+            </p>
+            <p>
+              Along with Silvanus, Selûne is one of the patron deities of the
+              Moonhunters tribe. Her teachings about finding one's way through
+              darkness hold special meaning for Gorne in his current quest for
+              redemption, and he often finds himself praying to her during his
+              travels.
+            </p>
+          </div>
+
+          <div class="deity-card">
+            <div class="deity-header">
+              <img
+                src="/api/placeholder/50/50"
+                alt="Gruumsh"
+                class="deity-icon"
+              />
+              <div>
+                <h3 class="deity-name">Gruumsh</h3>
+                <div class="deity-portfolio">God of Orcs</div>
+              </div>
+            </div>
+            <div class="connection-meter">
+              <div class="connection-value" style="width: 1%"></div>
+            </div>
+            <p>
+              One-Eye, Gruumsh is the chief deity of the orcish pantheon who
+              demands constant warfare and conquest. The Moonhunters tribe
+              explicitly rejected his violent teachings generations ago.
+            </p>
+            <p>
+              Though Gorne has never worshipped Gruumsh, the "Blood of Gruumsh"
+              - the rage inherent to orcish nature - flows in his veins. His
+              temporary surrender to this rage during his vengeful rampage
+              deeply shamed him, reinforcing his commitment to the more balanced
+              path taught by his mother.
+            </p>
+          </div>
+        </div>
+
+        <h2>The Blood of Gruumsh</h2>
+        <p>
+          A central concept in Gorne's story is the "Blood of Gruumsh" - the
+          innate rage and destructive fury that orcs believe they inherit from
+          their chief deity. This primal anger provides tremendous strength in
+          battle but can lead to uncontrolled violence if not properly mastered.
+        </p>
+
+        <p>
+          The Moonhunters tribe developed specific practices to control this
+          dangerous aspect of their nature, rejecting Gruumsh's call to endless
+          violence in favor of Silvanus's more balanced approach. Varka taught
+          these techniques to her son from an early age, helping him understand
+          and control the fierce emotions within him.
+        </p>
+
+        <p>
+          When Gorne surrendered to vengeance after Penelope's death, he
+          essentially gave in to the Blood of Gruumsh, allowing the destructive
+          rage to overwhelm his training and discipline. The aftermath of this
+          surrender - the innocent lives he took, the injury to his father -
+          represents his greatest shame and the primary obstacle to reclaiming
+          his divine connection to Tyr.
+        </p>
+
+        <blockquote>
+          "The Blood makes us strong, but control makes us powerful. Any beast
+          can destroy; wisdom lies in knowing when not to."
+          <cite>— Teaching of the Moonhunter shamans</cite>
+        </blockquote>
+      </div>
+
+      <!-- Modals -->
+      <div class="modal" id="term-modal">
+        <div class="modal-content">
+          <button class="close-modal">&times;</button>
+          <h2 class="modal-title" id="modal-term-title">Term</h2>
+          <div id="modal-term-content"></div>
+        </div>
+      </div>
+
+      <div class="modal" id="location-modal">
+        <div class="modal-content">
+          <button class="close-modal">&times;</button>
+          <h2 class="modal-title" id="modal-location-title">Location</h2>
+          <div id="modal-location-content"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>made with ❤️ by Larsen</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Tab switching
+        const tabs = document.querySelectorAll(".tab-item");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const tabId = tab.getAttribute("data-tab");
+
+            tabs.forEach((t) => t.classList.remove("active"));
+            tabContents.forEach((content) =>
+              content.classList.remove("active")
+            );
+
+            tab.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+          });
+        });
+
+        // Collapsible sections
+        const collapsibles = document.querySelectorAll(".collapsible-header");
+
+        collapsibles.forEach((collapsible) => {
+          collapsible.addEventListener("click", () => {
+            const parent = collapsible.parentElement;
+            parent.classList.toggle("active");
+          });
+        });
+
+        // Term modals
+        const terms = document.querySelectorAll(".term");
+        const termModal = document.getElementById("term-modal");
+        const termModalTitle = document.getElementById("modal-term-title");
+        const termModalContent = document.getElementById("modal-term-content");
+
+        terms.forEach((term) => {
+          term.addEventListener("click", () => {
+            const termId = term.getAttribute("data-term");
+            const termContent = getTermContent(termId);
+
+            termModalTitle.textContent = termContent.title;
+            termModalContent.innerHTML = termContent.content;
+            termModal.style.display = "flex";
+          });
+        });
+
+        // Location modals
+        const locationCards = document.querySelectorAll(".location-card");
+        const locationModal = document.getElementById("location-modal");
+        const locationModalTitle = document.getElementById(
+          "modal-location-title"
+        );
+        const locationModalContent = document.getElementById(
+          "modal-location-content"
+        );
+
+        locationCards.forEach((card) => {
+          card.addEventListener("click", () => {
+            const locationId = card.getAttribute("data-location");
+            const locationContent = getLocationContent(locationId);
+
+            locationModalTitle.textContent = locationContent.title;
+            locationModalContent.innerHTML = locationContent.content;
+            locationModal.style.display = "flex";
+          });
+        });
+
+        // Close modals
+        const closeButtons = document.querySelectorAll(".close-modal");
+        const modals = document.querySelectorAll(".modal");
+
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            modals.forEach((modal) => {
+              modal.style.display = "none";
+            });
+          });
+        });
+
+        window.addEventListener("click", (e) => {
+          modals.forEach((modal) => {
+            if (e.target === modal) {
+              modal.style.display = "none";
+            }
+          });
+        });
+
+        // Theme toggle
+        const checkbox = document.getElementById("checkbox");
+        const body = document.body;
+
+        checkbox.addEventListener("change", () => {
+          // If checkbox is NOT checked, enable dark mode
+          // If checkbox IS checked, disable dark mode
+          if (!checkbox.checked) {
+            body.classList.add("dark-mode");
+          } else {
+            body.classList.remove("dark-mode");
+          }
+        });
+
+        // Connection strength animation
+        const connectionValues = document.querySelectorAll(".connection-value");
+
+        setTimeout(() => {
+          connectionValues.forEach((value) => {
+            const width = value.style.width;
+            value.style.width = "0";
+            setTimeout(() => {
+              value.style.width = width;
+            }, 100);
+          });
+        }, 500);
+
+        // Content for term modals
+        function getTermContent(termId) {
+          const content = {
+            "order-of-the-gauntlet": {
+              title: "Order of the Gauntlet",
+              content: `
+                            <p>The Order of the Gauntlet is a coalition of morally upstanding warriors, knights, paladins and clerics who dedicated themselves to the destruction of evil in Faerûn in the 15th century DR. They were a unified group, bonded by either their fervent religious beliefs or staunch dedication to enforcing justice in the realms.</p>
+                            <p>Members of the order were strong in their faith, using it to stand against evil forces. While this faith ranged from believing in one's personal god, it extended also to those considered close friends, and especially to oneself. Most often, Knights of the Gauntlet venerated either the God of Guardians, Helm; two of the deities of the Triad, Torm and Tyr; as well as the Poet of Justice, Hoar.</p>
+                            <p>The Order's tenets:</p>
+                            <ul>
+                                <li>Faith was a member's most potent weapon against evil</li>
+                                <li>Great challenges required heroic demonstrations of both strength and valor</li>
+                                <li>It was justified to punish an act of evil, not a thought or feeling</li>
+                            </ul>
+                        `,
+            },
+            moonhunters: {
+              title: "Moonhunters Tribe",
+              content: `
+                            <p>The Moonhunters are an unusual tribe of orcs who rejected the violent teachings of Gruumsh in favor of the more balanced path of Silvanus (the Forest Father) and Selûne (the Moonmaiden). Founded generations ago by a visionary chieftain named Grohk Steelclaw who renounced the orcish pantheon after witnessing how its endless calls for violence threatened to destroy his people.</p>
+                            <p>Unlike traditional orc tribes that worship Gruumsh and his pantheon, the Moonhunters developed rituals and practices to control what they call the "Blood of Gruumsh" - the innate rage that all orcs carry within them. Young orcs are taught meditation techniques to master their anger, and warriors who feel the battle-fury rising too strongly will step back from combat to recenter themselves.</p>
+                            <p>The tribe believes that to give in fully to rage is to surrender to Gruumsh's influence, and they consider such surrender a dangerous failure. This philosophy makes them outcasts among traditional orc societies, who view them as weak or heretical. However, it has also allowed them to develop a more sustainable culture and to form alliances with non-orcish neighbors when necessary.</p>
+                        `,
+            },
+            "fort-defiance": {
+              title: "Fort Defiance",
+              content: `
+                            <p>Fort Defiance is a rebuilt garrison along the High Road, jointly operated by the Order of the Gauntlet and the Moonhunters tribe. Originally an abandoned and crumbling outpost, it was reclaimed by Sir Aldren Kevlor and a small contingent of knights tasked with securing the trade route between Neverwinter and points north.</p>
+                            <p>The fort's name was chosen to reflect both its precarious initial condition and the determination of its defenders to hold it against all odds. When Sir Aldren formed his unusual alliance with the Moonhunters tribe led by Varka, the fort became a unique experiment in human-orc cooperation.</p>
+                            <p>Today, Fort Defiance serves as both a military garrison and a trading post, where merchants traveling the High Road can find protection, supplies, and occasionally unusual goods crafted by the Moonhunters. It represents a rare example of peaceful coexistence between humans and orcs in the often dangerous North.</p>
+                        `,
+            },
+            "moonhunter-valley": {
+              title: "Moonhunter Valley",
+              content: `
+                            <p>Moonhunter Valley is a hidden valley nestled within Neverwinter Wood, home to the Moonhunter orc tribe that follows Silvanus and Selûne. The valley is protected by natural features that make it difficult to find without a guide, including steep slopes and dense forest growth.</p>
+                            <p>Within the valley, the Moonhunters have established a sustainable settlement that works with the natural environment rather than against it. Unlike the crude camps of traditional orc tribes, Moonhunter Valley features permanent structures built to last generations, gardens where medicinal herbs are cultivated, and sacred groves where rituals to Silvanus and Selûne are performed.</p>
+                            <p>The valley was discovered by Varka and her scouts during a period when the Moonhunters were seeking a new home away from the aggression of traditional orc tribes. The alliance with Fort Defiance has allowed the Moonhunters to establish a permanent settlement here without fear of being overrun by enemies.</p>
+                        `,
+            },
+            "blood-of-gruumsh": {
+              title: "Blood of Gruumsh",
+              content: `
+                            <p>The "Blood of Gruumsh" refers to the innate rage and destructive fury that orcs believe they inherit from their chief deity, Gruumsh One-Eye. This primal anger provides tremendous strength in battle but can lead to uncontrolled violence if not properly mastered.</p>
+                            <p>Traditional orc tribes view this rage as a blessing, channeling it into the constant warfare and conquest demanded by Gruumsh. However, the Moonhunters tribe takes a different approach, viewing the Blood as a dangerous force that must be controlled rather than embraced.</p>
+                            <p>Moonhunter shamans teach young orcs meditation techniques and spiritual practices to master their rage. Warriors learn to recognize when the Blood is rising within them and develop methods to maintain control even in the heat of battle. To surrender completely to the Blood is considered a grave failure in Moonhunter culture, as it represents returning to the destructive path they have explicitly rejected.</p>
+                        `,
+            },
+            tyr: {
+              title: "Tyr",
+              content: `
+                            <p>Tyr, also known as the Maimed God or the Even-Handed, is the lawful good greater deity of law and justice in the Faerûnian pantheon. He appears as a noble warrior missing his right hand, which he lost to Kezef the Chaos Hound in an act of bravery, and with his eyes wrapped in cloth to signify his blindness, caused by Ao during the Time of Troubles.</p>
+                            <p>Tyr's followers devote themselves to the cause of justice, to the righting of wrongs and the delivery of fair, impartial judgment. His clerics and paladins often wear thin strips of cloth over their eyes to remind others of the blindness of justice. Many orders of knighthood are devoted to Tyr, including the Knights of Holy Judgment and the Knights of the Merciful Sword.</p>
+                            <p>In the Forgotten Realms, Tyr was part of a divine coalition known as the Triad, alongside Ilmater (god of endurance) and Torm (god of duty). His symbol is a balanced scale resting on a warhammer.</p>
+                        `,
+            },
+            hoar: {
+              title: "Hoar",
+              content: `
+                            <p>Hoar, also known as The Doombringer, is the vengeful deity of retribution invoked by those who seek to repay an eye for an eye. When a guilty party falls prey to fate (such as when a murderer is killed accidentally just after committing their crime), the hand of Hoar is given credit.</p>
+                            <p>Unlike Tyr's balanced approach to justice, Hoar embodies bitter revenge and poetic punishment for wrongdoers. His followers seek out victims of injustice, hear their stories, and track down perpetrators to inflict a fitting form of punishment. Hoar's priests believe that fitting recompense will always accrue for one's actions - violence will meet violence and evil pay back evil.</p>
+                            <p>In the pantheon of Faerûn, Hoar has fluctuated between being an independent deity and serving as an exarch to more powerful gods like Bane. After Tyr's death, Hoar was recruited by Bane, though following the Second Sundering, he shifted back to a more neutral outlook.</p>
+                        `,
+            },
+            silvanus: {
+              title: "Silvanus",
+              content: `
+                            <p>Silvanus, known as the Oak Father or the Forest Father, is one of the oldest and most prominent deities in Faerûn. He is the god of wild nature and represents the wilderness in its purest form. His philosophy emphasizes that wild nature is the true state of the world, to be preserved and respected rather than conquered or exploited.</p>
+                            <p>The Oak Father teaches balance within nature - not just preservation, but the natural cycle of life, death, and rebirth. His followers include druids, rangers, and others who seek to protect wild places from encroachment and destruction. They believe that nature left undisturbed provides spiritual renewal and insight that civilization cannot offer.</p>
+                            <p>Silvanus appears in two main avatar forms: the Old Father (an ancient, bearded face that manifests in old trees) and the Young Strider (a long-limbed humanoid clad in leaf armor). His symbol is an oak leaf, and sacred groves of oak trees often serve as shrines to his worship.</p>
+                        `,
+            },
+            selune: {
+              title: "Selûne",
+              content: `
+                            <p>Selûne, also known as Our Lady of Silver or the Moonmaiden, is the goddess of the moon in the Forgotten Realms pantheon. She is also venerated as a goddess of light, stars, navigation, navigators, wanderers, questers, and non-evil lycanthropes.</p>
+                            <p>According to ancient myths, Selûne was created from the primordial essence of the universe alongside her twin sister Shar, goddess of darkness. Together they created the world of Toril and the heavenly bodies, though they later came into conflict when Selûne brought light and warmth into creation, something Shar opposed.</p>
+                            <p>Selûne's worshippers include sailors, navigators, those who travel by night, and those seeking protection from darkness both literal and metaphorical. Her light is seen as a guide through difficult times and places, making her particularly important to the Moonhunters tribe who rejected the darkness of Gruumsh's path.</p>
+                        `,
+            },
+            harpers: {
+              title: "The Harpers",
+              content: `
+                            <p>The Harpers are a semi-secret organization dedicated to preserving knowledge, maintaining balance, and opposing tyranny across Faerûn. Founded in 324 DR by the half-elf bard Aliost Oskrunnar, the Harpers have operated throughout history as guardians of freedom and protectors of the weak against the depredations of the powerful.</p>
+                            <p>Rather than maintaining a rigid hierarchy, the Harpers function as a loose network of individual agents who share common ideals and goals. They gather information, preserve ancient knowledge, and work subtly to promote fairness and freedom. Their typical members include bards, rangers, and others who can move freely and observe without drawing attention.</p>
+                            <p>The organization's symbol is a silver harp between the horns of a crescent moon, though most Harper agents keep this symbol hidden except when identifying themselves to other members. Their motto is "Down with tyranny, monarchy, and anyone who abuses their power."</p>
+                        `,
+            },
+            "cragmaw-goblins": {
+              title: "Cragmaw Goblins",
+              content: `
+                            <p>The Cragmaw are a tribe of goblins, bugbears, and hobgoblins operating in the Neverwinter Wood and along the Triboar Trail. The members of the tribe sharpen their teeth to appear more ferocious, which led to their name. Their main stronghold is Cragmaw Castle, from which King Grol rules the tribe.</p>
+                            <p>In recent years, the Cragmaws have become more active in the region, attacking travelers and merchants along the High Road and other trade routes. They are known for their ambush tactics, using the dense forest to their advantage when attacking larger or better-equipped targets.</p>
+                            <p>The tribe gained particular significance in Gorne's story when a Cragmaw raiding party attacked and killed his wife Penelope. This tragedy triggered his embrace of vengeance through Hoar and his subsequent rampage that nearly destroyed the entire tribe. The few survivors now tell fearful tales of the "Tusked Demon" whose fury surpassed anything in their experience.</p>
+                        `,
+            },
+          };
+
+          return (
+            content[termId] || {
+              title: "Term Not Found",
+              content: "<p>Information about this term is not available.</p>",
+            }
+          );
+        }
+
+        // Content for location modals
+        function getLocationContent(locationId) {
+          const content = {
+            "fort-defiance": {
+              title: "Fort Defiance",
+              content: `
+                            <img src="/api/placeholder/500/300" alt="Fort Defiance" class="responsive-image">
+                            <h3>History</h3>
+                            <p>Fort Defiance was originally an abandoned outpost along the High Road, reclaimed by Sir Aldren Kevlor and a small contingent of knights from the Order of the Gauntlet. The fort was named for both its decrepit initial condition and the determination of its defenders to hold it against all odds.</p>
+                            <p>When Sir Aldren encountered the Moonhunters tribe and formed an alliance with their leader Varka, the fort became a unique experiment in human-orc cooperation. Despite skepticism from authorities in Neverwinter and resistance within the Order itself, the arrangement proved successful, with the fort securing a significant portion of the High Road from bandit attacks and monster incursions.</p>
+                            
+                            <h3>Current Status</h3>
+                            <p>Today, Fort Defiance serves as both a military garrison and a trading post where merchants traveling the High Road can find protection, supplies, and occasionally unusual goods crafted by the Moonhunters. The fort's reputation has grown in recent years, and it now stands as a symbol of potential cooperation between races often at odds.</p>
+                            <p>Since Gorne's departure on his quest for redemption, leadership of the fort has fallen entirely to Sir Aldren, though his hand injury limits his combat effectiveness. The knights and Moonhunter warriors continue to patrol the High Road together, maintaining the unusual alliance.</p>
+                            
+                            <h3>Notable Locations</h3>
+                            <ul>
+                                <li><strong>The Great Hall:</strong> Central meeting place and dining hall, where knights and Moonhunters gather for meals and councils</li>
+                                <li><strong>The Watchtower:</strong> Highest point in the fort, offering views of the surrounding countryside and the High Road in both directions</li>
+                                <li><strong>The Shrine of Two Moons:</strong> A small sanctuary where followers of both Tyr and Selûne can pray and meditate</li>
+                                <li><strong>The Training Yard:</strong> Where Gorne spent much of his youth learning swordsmanship from his father and control from his mother</li>
+                            </ul>
+                        `,
+            },
+            "moonhunter-valley": {
+              title: "Moonhunter Valley",
+              content: `
+                            <img src="/api/placeholder/500/300" alt="Moonhunter Valley" class="responsive-image">
+                            <h3>Geography</h3>
+                            <p>Moonhunter Valley is a hidden valley within Neverwinter Wood, approximately a half-day's journey from Fort Defiance. Protected by steep slopes and dense forest growth, the valley remains difficult to find without a guide. A clear stream flows through its center, widening into a small lake at the valley's heart.</p>
+                            <p>The valley's eastern entrance narrows to a defensible gap barely thirty yards across, making it ideal for the Moonhunters who sought safety from traditional orc tribes that viewed them as heretics. The valley's fertile soil supports abundant plant life, including several groves of ancient oak trees considered sacred to Silvanus.</p>
+                            
+                            <h3>The Settlement</h3>
+                            <p>Unlike the crude camps of traditional orc tribes, the Moonhunter settlement features permanent structures built to last generations. These include longhouses for families, a central meeting hall, workshops for artisans, and a circular stone platform where rituals to Silvanus and Selûne are performed under the open sky.</p>
+                            <p>The Moonhunters practice sustainable living, hunting only what they need and cultivating gardens of medicinal herbs and edible plants. They have established a harmonious relationship with the valley's ecosystem, viewing themselves as guardians rather than masters of this natural sanctuary.</p>
+                            
+                            <h3>Significance to Gorne</h3>
+                            <p>Gorne spent much of his childhood in Moonhunter Valley, learning the tribe's practices for controlling the "Blood of Gruumsh" and developing an appreciation for the balance of nature that Silvanus represents. It was here that he first encountered Stormfang, the mysterious wolf that the tribe's shamans identified as a messenger of Silvanus.</p>
+                            <p>The valley remains a place of safety for the Moonhunters, though they maintain strong ties with Fort Defiance. Varka continues to lead the tribe, though she often travels between the valley and the fort, maintaining the alliance her relationship with Aldren created.</p>
+                        `,
+            },
+            neverwinter: {
+              title: "Neverwinter",
+              content: `
+                            <img src="/api/placeholder/500/300" alt="Neverwinter" class="responsive-image">
+                            <h3>The City of Skilled Hands</h3>
+                            <p>Neverwinter, also known as the City of Skilled Hands or the Jewel of the North, is one of the most prominent cities on the Sword Coast. Named for the Neverwinter River that flows through it - a river that mysteriously never freezes despite the cold northern climate - the city has long been known for its master craftsmen, beautiful gardens, and colored glass lamps.</p>
+                            <p>In 1451 DR, the city was devastated by the eruption of Mount Hotenow, which destroyed much of its infrastructure and killed many of its citizens. Since then, Lord Dagult Neverember has led reconstruction efforts, declaring himself Lord Protector of Neverwinter and investing considerable resources in rebuilding the city.</p>
+                            
+                            <h3>Current Status</h3>
+                            <p>By 1489 DR, Neverwinter has partially recovered from the cataclysm. The city walls have been restored, and the population has begun to grow again as merchants, craftspeople, and opportunists arrive hoping to make their fortunes in the rebuilding city. However, many districts remain in ruins, and dangers still lurk in the less-controlled areas.</p>
+                            <p>Lord Neverember maintains control through a combination of political maneuvering and military force, with his mercenary army keeping order while reconstruction continues. The rebuilding of Neverwinter is a priority for the Lords' Alliance, as the city's strategic location makes it vital for trade along the Sword Coast.</p>
+                            
+                            <h3>Connection to Gorne</h3>
+                            <p>Gorne visited Neverwinter occasionally during his youth, accompanying his father on official business or his mother on trading missions. It was in Neverwinter that he met Penelope, who served in Lord Neverember's diplomatic corps while secretly gathering information for the Harpers.</p>
+                            <p>Following their marriage, Gorne and Penelope maintained a small apartment in the Blacklake District, though they spent most of their time at Fort Defiance. After Penelope's death and revival, she returned to Neverwinter to recover while Gorne embarked on his quest for redemption.</p>
+                        `,
+            },
+            "neverwinter-wood": {
+              title: "Neverwinter Wood",
+              content: `
+                            <img src="/api/placeholder/500/300" alt="Neverwinter Wood" class="responsive-image">
+                            <h3>Ancient Forest</h3>
+                            <p>Neverwinter Wood is a vast, ancient forest east of the city of Neverwinter. It is one of the largest forests in the North, stretching for miles in all directions and harboring many secrets and dangers. The forest is dense and often misty, with towering trees that have stood for centuries.</p>
+                            <p>The wood has a reputation for being haunted or enchanted, with local folklore warning of strange lights, mysterious voices, and travelers who enter never to return. While some of these tales are mere superstition, the forest does indeed contain powerful magic and ancient ruins dating back to fallen civilizations.</p>
+                            
+                            <h3>Inhabitants</h3>
+                            <p>Neverwinter Wood is home to a diverse array of creatures and communities. Wolves, bears, and other natural wildlife abound, alongside more magical creatures like dryads and treants who protect the oldest groves. Various tribes of goblins, including the Cragmaws, make their lairs in caves and ruined structures throughout the forest.</p>
+                            <p>The northwestern region of the wood contains Moonhunter Valley, home to the unusual orc tribe that raised Gorne. Deeper in the forest, more dangerous predators lurk, including displacer beasts, owlbears, and occasionally more sinister entities that have escaped notice or capture.</p>
+                            
+                            <h3>Significance to Gorne</h3>
+                            <p>Gorne knows Neverwinter Wood better than most humans, having explored it extensively during his childhood with his mother's Moonhunter tribemates. He learned to hunt, track, and navigate through the dense forest, developing skills that would later serve him well as a paladin.</p>
+                            <p>The wood is also the site of his greatest shame - it was within these trees that he hunted and slayed the Cragmaw goblins that killed his wife Penelope, and where Gorne later unleashed his vengeful fury upon their tribe. The memories of what happened there continue to haunt him during his quest for redemption.</p>
+                        `,
+            },
+            "high-road": {
+              title: "The High Road",
+              content: `
+                            <img src="/api/placeholder/500/300" alt="The High Road" class="responsive-image">
+                            <h3>Major Trade Route</h3>
+                            <p>The High Road is one of the most important trade routes along the Sword Coast, running north from Waterdeep along the coast through Neverwinter and eventually to Luskan. For centuries, it has served as the primary artery for commerce and travel in the region, connecting major cities and smaller settlements alike.</p>
+                            <p>Portions of the road were damaged during the cataclysm that struck Neverwinter, and in the resulting chaos, several sections became dangerous as monsters and bandits moved into the area. Restoring safe travel along the High Road has become a priority for both Waterdeep and Neverwinter, as commerce is vital to the region's recovery.</p>
+                            
+                            <h3>Fort Defiance's Role</h3>
+                            <p>Lord Neverember assigned the Order of the Gauntlet the task of securing the northern section of the High Road, providing a safe corridor for trade to and from Neverwinter. Fort Defiance was established as a key garrison in this effort, positioned to patrol a twenty-mile stretch of the road that had become particularly notorious for bandit attacks.</p>
+                            <p>Under Sir Aldren's leadership and with the assistance of the Moonhunters tribe, this section of the High Road has become significantly safer in recent years. Merchant caravans now regularly travel with smaller guards than previously required, and some even choose to spend nights at Fort Defiance rather than risk camping in the open.</p>
+                            
+                            <h3>Current Threats</h3>
+                            <p>Despite the improvements, the High Road still faces various threats. Bandits continue to operate in less-patrolled areas, and the Cragmaw goblins occasionally venture from Neverwinter Wood to attack isolated travelers. Creatures displaced by the cataclysm sometimes wander onto the road, creating danger for the unprepared.</p>
+                            <p>More worrying are rumors of organized criminal elements from Luskan seeking to establish a presence along the road, potentially complicating the straightforward security efforts of Fort Defiance. Lord Neverember has promised additional resources to counter this threat, though such support has been slow to materialize.</p>
+                        `,
+            },
+          };
+
+          return (
+            content[locationId] || {
+              title: "Location Not Found",
+              content:
+                "<p>Information about this location is not available.</p>",
+            }
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
