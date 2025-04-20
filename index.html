@@ -1984,17 +1984,41 @@
           });
         });
 
-        // Theme toggle
+        // Theme toggle with localStorage
         const checkbox = document.getElementById("checkbox");
         const body = document.body;
 
+        // Load saved preference from localStorage when page loads
+        const savedDarkMode = localStorage.getItem("darkMode");
+
+        // If there's a saved preference, apply it
+        if (savedDarkMode !== null) {
+          // Convert the stored string to boolean
+          const isDarkMode = savedDarkMode === "true";
+
+          // Apply the dark mode if it was enabled
+          if (isDarkMode) {
+            body.classList.add("dark-mode");
+            // Update checkbox state (uncheck for dark mode)
+            checkbox.checked = false;
+          } else {
+            // Light mode should have the checkbox checked
+            checkbox.checked = true;
+          }
+        }
+
+        // Listen for changes to the toggle
         checkbox.addEventListener("change", () => {
           // If checkbox is NOT checked, enable dark mode
           // If checkbox IS checked, disable dark mode
           if (!checkbox.checked) {
             body.classList.add("dark-mode");
+            // Save preference to localStorage
+            localStorage.setItem("darkMode", "true");
           } else {
             body.classList.remove("dark-mode");
+            // Save preference to localStorage
+            localStorage.setItem("darkMode", "false");
           }
         });
 
